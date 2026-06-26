@@ -1,8 +1,10 @@
 const http = require('http');
 
-// BUG: assumes job.payload.values always exists. When a malformed job arrives
-// (no payload), this throws "Cannot read properties of undefined (reading 'values')".
+// FIX: guard against missing payload before accessing .values
 function computeStats(job) {
+  if (!job.payload || !job.payload.values) {
+    throw new Error('Invalid job payload: missing values (job id=' + job.id + ')');
+  }
   const values = job.payload.values;
   const sum = values.reduce((a, b) => a + b, 0);
   return { sum, avg: sum / values.length };
