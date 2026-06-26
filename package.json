@@ -1,0 +1,10 @@
+{
+  "name": "nimbus-ops-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demo service with an intentional bug for Nimbus ops testing.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  }
+}
